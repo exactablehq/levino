@@ -1,21 +1,40 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Playfair_Display, Great_Vibes, Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const greatVibes = Great_Vibes({
+  weight: "400",
+  variable: "--font-great-vibes",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Next.js SSG + Tailwind + Framer Motion Template",
+  title: "Levino Daman - 𝒶 𝒽𝑜𝓂𝑒 𝒶𝓌𝒶𝓎 𝒻𝓇𝑜𝓂 𝒽𝑜𝓂𝑒",
   description:
-    "A production-ready boilerplate to generate SSG static sites with Next.js 16, Tailwind CSS v4, Framer Motion animations, and zero-config deployment to GitHub Pages using GitHub Actions.",
+    "Elegant Homely Stay. 5 Minutes from Devka Beach. Multi-Cuisine Restaurant. Expansive Lawns for Weddings & Celebrations.",
+  openGraph: {
+    title: "Levino Daman - 𝒶 𝒽𝑜𝓂𝑒 𝒶𝓌𝒶𝓎 𝒻𝓇𝑜𝓂 𝒽𝑜𝓂𝑒",
+    description:
+      "Elegant Homely Stay. 5 Minutes from Devka Beach. Multi-Cuisine Restaurant.",
+    type: "website",
+    url: "https://levino.in",
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -26,9 +45,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${playfair.variable} ${greatVibes.variable} ${inter.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-[#FBFBF7] text-[#281C13] font-sans selection:bg-[#9C6644]/20 selection:text-[#352318]">
+        {children}
+      </body>
     </html>
   );
 }
