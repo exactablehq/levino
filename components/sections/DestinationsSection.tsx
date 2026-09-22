@@ -3,122 +3,156 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Star, CheckCircle, ArrowRight } from "lucide-react";
+import { Star, CheckCircle, ArrowUpRight } from "lucide-react";
 import { PROPERTIES, Property } from "@/data/levinoData";
-import { Badge } from "../ui/Badge";
 import { Button } from "../ui/Button";
 
 interface DestinationsSectionProps {
   onOpenBooking: (destination?: string) => void;
 }
 
-export const DestinationsSection: React.FC<DestinationsSectionProps> = ({ onOpenBooking }) => {
+export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
+  onOpenBooking,
+}) => {
   return (
-    <section id="destinations" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20">
-      {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-        <span className="font-script-accent text-3xl text-[#9C6644] block">
-          The Levino Experience
-        </span>
-        <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl text-[#281C13] font-medium leading-tight">
-          Two destinations, distinct in character, united by timeless hospitality.
-        </h2>
-        <p className="text-sm sm:text-base text-[#6A472F] font-normal leading-relaxed pt-2">
-          Whether you are seeking an idyllic beachside family retreat or orchestrating a grand
-          fairytale wedding, our properties offer tailored sanctuaries for unforgettable moments.
-        </p>
-      </div>
+    <section
+      id="destinations"
+      className="bg-white px-5 py-24 sm:px-8 lg:px-12"
+    >
+      <div className="mx-auto max-w-7xl">
 
-      {/* Grid of Properties */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        {PROPERTIES.map((property: Property, index: number) => {
-          const isMeadows = property.id === "meadows";
-          return (
-            <motion.div
-              key={property.id}
-              id={property.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="luxury-card rounded-3xl overflow-hidden flex flex-col group scroll-mt-28"
-            >
-              {/* Property Image Showcase */}
-              <div className="relative aspect-16/10 w-full overflow-hidden bg-[#EDECE4]">
-                <Image
-                  src={property.image}
-                  alt={property.name}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#281C13]/60 via-transparent to-transparent" />
+        {/* Section Header */}
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <div className="mb-4 flex items-center justify-center gap-3">
+            <span className="h-px w-10 bg-[#9C6644]" />
+            <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#8A6249]">
+              Stay with Levino
+            </span>
+            <span className="h-px w-10 bg-[#9C6644]" />
+          </div>
 
-                {/* Top Badges */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-                  <Badge variant="subtle" className="font-semibold shadow-xs">
-                    {property.badge}
-                  </Badge>
+          <h2 className="font-serif-luxury text-4xl font-medium leading-tight text-[#281C13] sm:text-5xl">
+            Two destinations.
+            <br />
+            <span className="italic text-[#7A5238]">
+              One memorable experience.
+            </span>
+          </h2>
 
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#281C13]/85 text-[#FBFBF7] backdrop-blur-md border border-white/20">
-                    <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                    <span>{property.rating} ({property.reviewCount})</span>
-                  </span>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#6A5A4E]">
+            Discover two distinctive Levino properties in Daman, each created
+            for a different kind of escape, celebration, and stay.
+          </p>
+        </div>
+
+        {/* Property Cards */}
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+          {PROPERTIES.map((property: Property, index: number) => {
+            return (
+              <motion.article
+                key={property.id}
+                id={property.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{
+                  duration: 0.7,
+                  delay: index * 0.12,
+                }}
+                className="group overflow-hidden rounded-[2rem] border border-[#E5E0D8] bg-[#FAF9F6] shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl scroll-mt-28"
+              >
+
+                {/* Image */}
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <Image
+                    src={property.image}
+                    alt={property.name}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                  />
+
+                  {/* Dark image gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#211710]/75 via-transparent to-transparent" />
+
+                  {/* Property badge */}
+                  <div className="absolute left-5 top-5">
+                    <span className="rounded-full bg-white/90 px-4 py-2 text-[11px] font-semibold uppercase tracking-wider text-[#4B3425] shadow-sm backdrop-blur-sm">
+                      {property.badge}
+                    </span>
+                  </div>
+
+                  {/* Rating */}
+                  <div className="absolute right-5 top-5 flex items-center gap-1.5 rounded-full bg-[#281C13]/80 px-3 py-2 text-xs text-white backdrop-blur-md">
+                    <Star className="h-3.5 w-3.5 fill-current text-[#DDB892]" />
+                    <span>
+                      {property.rating} · {property.reviewCount} reviews
+                    </span>
+                  </div>
+
+                  {/* Image title */}
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <p className="mb-2 text-[10px] uppercase tracking-[0.25em] text-white/70">
+                      Levino Daman
+                    </p>
+
+                    <h3 className="font-serif-luxury text-3xl font-medium text-white sm:text-4xl">
+                      {property.name}
+                    </h3>
+                  </div>
                 </div>
 
-                {/* Image Bottom Title */}
-                <div className="absolute bottom-4 left-6 right-6 text-white">
-                  <h3 className="font-serif-luxury text-2xl sm:text-3xl font-medium">
-                    {property.name}
-                  </h3>
-                </div>
-              </div>
-
-              {/* Property Content Details */}
-              <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-6">
-                <div className="space-y-4">
-                  <p className="text-sm sm:text-base text-[#6A472F] leading-relaxed">
+                {/* Content */}
+                <div className="p-7 sm:p-8">
+                  <p className="text-[15px] leading-7 text-[#6A5A4E]">
                     {property.description}
                   </p>
 
-                  {/* Highlights List */}
-                  <div className="space-y-2.5 pt-2 border-t border-[#EDECE4]">
-                    <p className="text-xs uppercase tracking-wider font-semibold text-[#281C13]">
-                      Property Highlights:
+                  {/* Highlights */}
+                  <div className="mt-7 border-t border-[#E5E0D8] pt-6">
+                    <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#8A6249]">
+                      Highlights
                     </p>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-[#352318]">
+
+                    <ul className="grid gap-3 sm:grid-cols-2">
                       {property.highlights.map((highlight, hIdx) => (
-                        <li key={hIdx} className="flex items-start gap-2">
-                          <CheckCircle className="w-4 h-4 text-[#9C6644] shrink-0 mt-0.5" />
+                        <li
+                          key={hIdx}
+                          className="flex items-start gap-2.5 text-sm text-[#4F4036]"
+                        >
+                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#9C6644]" />
                           <span>{highlight}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-                </div>
 
-                {/* Card Footer Actions */}
-                <div className="pt-4 border-t border-[#EDECE4] flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <div className="flex items-center gap-2 text-xs text-[#7F5539]">
-                    <span className="font-medium text-[#281C13]">{property.rooms} Rooms</span>
-                    <span>•</span>
-                    <span>{property.capacity}</span>
+                  {/* Bottom */}
+                  <div className="mt-7 flex flex-col gap-5 border-t border-[#E5E0D8] pt-6 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-[#281C13]">
+                        {property.rooms} Rooms
+                      </p>
+                      <p className="mt-1 text-xs text-[#7A6A5E]">
+                        {property.capacity}
+                      </p>
+                    </div>
+
+                    <Button
+                      variant="primary"
+                      size="md"
+                      onClick={() => onOpenBooking(property.name)}
+                      icon={<ArrowUpRight className="h-4 w-4" />}
+                      className="w-full sm:w-auto"
+                    >
+                      Explore
+                    </Button>
                   </div>
-
-                  <Button
-                    variant={isMeadows ? "primary" : "secondary"}
-                    size="md"
-                    onClick={() => onOpenBooking(property.name)}
-                    icon={<ArrowRight className="w-4 h-4" />}
-                    className="w-full sm:w-auto"
-                  >
-                    Explore {property.name.replace("Levino ", "")}
-                  </Button>
                 </div>
-              </div>
-            </motion.div>
-          );
-        })}
+              </motion.article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

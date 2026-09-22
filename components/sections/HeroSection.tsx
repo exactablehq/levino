@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Phone, Calendar, Star, MapPin, Sparkles, ArrowDown } from "lucide-react";
+import { Phone, Calendar, MapPin, Star } from "lucide-react";
 import { LEVINO_CONTACT } from "@/data/levinoData";
 import { Button } from "../ui/Button";
 
@@ -11,47 +11,49 @@ interface HeroSectionProps {
   onOpenBooking: () => void;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({
+  onOpenBooking,
+}) => {
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-radial-to-b from-[#FBFBF7] via-[#F5F4EE] to-[#FBFBF7]">
-      {/* Ambient background glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#DDB892]/15 rounded-full blur-3xl pointer-events-none" />
+    <section className="relative min-h-screen overflow-hidden bg-[#F7F5EF] px-5 pb-16 pt-28 sm:px-8 lg:px-12">
+      <div className="mx-auto grid min-h-[calc(100vh-7rem)] max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
 
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
-        {/* Left Column: Editorial Headline & Copy */}
+        {/* LEFT CONTENT */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="lg:col-span-7 text-center lg:text-left space-y-6"
+          transition={{ duration: 0.8 }}
+          className="relative z-10 text-center lg:text-left"
         >
-          {/* Tagline Script Accent */}
-          <div className="inline-flex items-center gap-2">
-            <span className="font-script-accent text-3xl sm:text-4xl text-[#9C6644] font-normal tracking-wide">
-              …a home away from home
+          {/* Small label */}
+          <div className="mb-6 flex items-center justify-center gap-3 lg:justify-start">
+            <span className="h-px w-10 bg-[#9C6644]" />
+            <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#8A6249]">
+              Levino Daman
             </span>
           </div>
 
-          {/* Main H1 Headline */}
-          <h1 className="font-serif-luxury text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-[#281C13] leading-[1.12]">
-            Where timeless <span className="italic font-normal text-[#6A472F]">elegance</span> meets effortless{" "}
-            <span className="italic font-normal text-[#6A472F]">comfort</span>.
+          {/* Main heading */}
+          <h1 className="font-serif-luxury text-5xl font-medium leading-[1.08] tracking-tight text-[#281C13] sm:text-6xl lg:text-7xl">
+            A place to
+            <br />
+            <span className="italic text-[#7A5238]">slow down.</span>
           </h1>
 
-          {/* Subtitle / Intro Narrative */}
-          <p className="text-base sm:text-lg text-[#6A472F] max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-            Levino Palms and Levino Meadows — two distinct destinations in Daman, united by a promise
-            of refined hospitality, peaceful retreats, and curated luxury amidst open green spaces.
+          {/* Description */}
+          <p className="mx-auto mt-7 max-w-xl text-base leading-8 text-[#6A5A4E] sm:text-lg lg:mx-0">
+            Discover a peaceful escape in Daman, where warm hospitality,
+            beautiful surroundings, and thoughtful experiences come together.
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+          {/* Buttons */}
+          <div className="mt-9 flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
             <Button
               variant="primary"
               size="lg"
               onClick={onOpenBooking}
-              icon={<Calendar className="w-4 h-4" />}
-              className="w-full sm:w-auto shadow-md"
+              icon={<Calendar className="h-4 w-4" />}
+              className="w-full sm:w-auto"
             >
               Check Availability
             </Button>
@@ -60,7 +62,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
               variant="outline"
               size="lg"
               href={`tel:${LEVINO_CONTACT.primaryPhoneClean}`}
-              icon={<Phone className="w-4 h-4 text-[#9C6644]" />}
+              icon={<Phone className="h-4 w-4" />}
               iconPosition="left"
               className="w-full sm:w-auto"
             >
@@ -68,90 +70,62 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
             </Button>
           </div>
 
-          {/* Key Feature Highlights Pills */}
-          <div className="pt-6 border-t border-[#EDECE4] grid grid-cols-2 sm:grid-cols-3 gap-3 text-left">
-            <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/70 border border-[#EDECE4]">
-              <div className="w-8 h-8 rounded-full bg-[#DDB892]/20 text-[#6A472F] flex items-center justify-center shrink-0">
-                <MapPin className="w-4 h-4" />
-              </div>
-              <div>
-                <p className="text-[11px] uppercase tracking-wider text-[#7F5539] font-medium">Location</p>
-                <p className="text-xs font-semibold text-[#281C13]">5 Min to Devka Beach</p>
-              </div>
+          {/* Trust information */}
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-4 border-t border-[#DED9D0] pt-6 text-sm text-[#6A5A4E] lg:justify-start">
+            <div className="flex items-center gap-2">
+              <MapPin className="h-4 w-4 text-[#9C6644]" />
+              <span>Near Devka Beach</span>
             </div>
 
-            <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/70 border border-[#EDECE4]">
-              <div className="w-8 h-8 rounded-full bg-[#DDB892]/20 text-[#6A472F] flex items-center justify-center shrink-0">
-                <Star className="w-4 h-4 fill-amber-400 text-amber-500" />
-              </div>
-              <div>
-                <p className="text-[11px] uppercase tracking-wider text-[#7F5539] font-medium">Ratings</p>
-                <p className="text-xs font-semibold text-[#281C13]">4.6/5 (1,000+ Reviews)</p>
-              </div>
-            </div>
+            <div className="hidden h-4 w-px bg-[#D5CEC4] sm:block" />
 
-            <div className="col-span-2 sm:col-span-1 flex items-center gap-2 p-2.5 rounded-xl bg-white/70 border border-[#EDECE4]">
-              <div className="w-8 h-8 rounded-full bg-[#DDB892]/20 text-[#6A472F] flex items-center justify-center shrink-0">
-                <Sparkles className="w-4 h-4 text-[#9C6644]" />
-              </div>
-              <div>
-                <p className="text-[11px] uppercase tracking-wider text-[#7F5539] font-medium">Weddings & Events</p>
-                <p className="text-xs font-semibold text-[#281C13]">Up to 800 Guests</p>
-              </div>
+            <div className="flex items-center gap-2">
+              <Star className="h-4 w-4 fill-current text-[#9C6644]" />
+              <span>4.6/5 Guest Rating</span>
             </div>
           </div>
         </motion.div>
 
-        {/* Right Column: Hero Visual Feature Showcase */}
+        {/* RIGHT IMAGE */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
+          initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
-          className="lg:col-span-5 relative"
+          transition={{ duration: 1, delay: 0.15 }}
+          className="relative"
         >
-          <div className="relative mx-auto max-w-md lg:max-w-none">
-            {/* Elegant luxury framing */}
-            <div className="relative aspect-4/5 rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-              <Image
-                src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop"
-                alt="Levino Daman luxury resort exterior"
-                fill
-                priority
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-                className="object-cover transition-transform duration-700 hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#281C13]/70 via-transparent to-transparent" />
+          <div className="relative mx-auto aspect-[4/5] max-w-xl overflow-hidden rounded-[2rem] shadow-2xl">
+            <Image
+              src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop"
+              alt="Levino Daman resort"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover transition-transform duration-1000 hover:scale-105"
+            />
 
-              {/* Floating Caption on Hero Image */}
-              <div className="absolute bottom-6 left-6 right-6 text-[#FBFBF7]">
-                <span className="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-[11px] uppercase tracking-widest font-medium border border-white/30 inline-block mb-2">
-                  Daman, India
-                </span>
-                <h2 className="font-serif-luxury text-2xl font-normal text-white">
-                  Levino Meadows & Palms
-                </h2>
-                <p className="text-xs text-white/80 font-light mt-1">
-                  Experience homelike warmth paired with boutique grandeur.
-                </p>
-              </div>
-            </div>
+            {/* Image overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#281C13]/70 via-transparent to-transparent" />
 
-            {/* Floating Top Right Tag */}
-            <div className="absolute -top-4 -right-4 hidden sm:flex items-center gap-2 bg-[#281C13] text-[#FBFBF7] px-4 py-2.5 rounded-2xl shadow-xl border border-[#DDB892]/40">
-              <span className="text-lg">🌿</span>
-              <div className="text-left">
-                <p className="text-[10px] uppercase tracking-wider text-[#DDB892]">Serenity</p>
-                <p className="text-xs font-medium">Lush Lawns & Pools</p>
-              </div>
+            {/* Image text */}
+            <div className="absolute bottom-7 left-7 right-7 text-white sm:bottom-9 sm:left-9">
+              <p className="mb-2 text-[11px] uppercase tracking-[0.25em] text-white/75">
+                Daman · India
+              </p>
+
+              <h2 className="font-serif-luxury text-3xl sm:text-4xl">
+                Levino Meadows & Palms
+              </h2>
+
+              <p className="mt-2 max-w-md text-sm leading-6 text-white/80">
+                A peaceful retreat designed for meaningful stays and
+                memorable moments.
+              </p>
             </div>
           </div>
-        </motion.div>
-      </div>
 
-      {/* Down Scroll Anchor */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-1 text-[#7F5539]/60 hover:text-[#281C13] transition-colors cursor-pointer">
-        <span className="text-[10px] uppercase tracking-widest font-medium">Explore</span>
-        <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
+          {/* Small decorative detail */}
+          <div className="absolute -bottom-5 -left-5 hidden h-24 w-24 rounded-full border border-[#B98B68]/40 sm:block" />
+        </motion.div>
       </div>
     </section>
   );
