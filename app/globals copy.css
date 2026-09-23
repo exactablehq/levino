@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FBFBF7;
+  --foreground: #281C13;
+  --levino-espresso: #281C13;
+  --levino-espresso-dark: #1E140C;
+  --levino-espresso-light: #352318;
+  --levino-cream: #FBFBF7;
+  --levino-surface: #F5F4EE;
+  --levino-border: #EDECE4;
+  --levino-caramel: #9C6644;
+  --levino-terracotta: #6A472F;
+  --levino-earth: #7F5539;
+  --levino-sand: #DDB892;
+  --levino-sand-light: #E6CCB2;
+  --levino-burgundy: #801929;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-espresso: var(--levino-espresso);
+  --color-espresso-dark: var(--levino-espresso-dark);
+  --color-espresso-light: var(--levino-espresso-light);
+  --color-cream: var(--levino-cream);
+  --color-surface: var(--levino-surface);
+  --color-border-subtle: var(--levino-border);
+  --color-caramel: var(--levino-caramel);
+  --color-terracotta: var(--levino-terracotta);
+  --color-earth: var(--levino-earth);
+  --color-sand: var(--levino-sand);
+  --color-sand-light: var(--levino-sand-light);
+  --color-burgundy: var(--levino-burgundy);
+  --font-sans: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-script: var(--font-great-vibes), cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Custom Typography Helpers */
+.font-serif-luxury {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
+.font-script-accent {
+  font-family: var(--font-great-vibes), cursive;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FBFBF7;
+}
+::-webkit-scrollbar-thumb {
+  background: #DDB892;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9C6644;
+}
+
+/* Subtle luxury borders & card glow */
+.luxury-border {
+  border-color: #EDECE4;
+}
+
+.luxury-card {
+  background: #FFFFFF;
+  border: 1px solid #EDECE4;
+  box-shadow: 0 10px 30px -10px rgba(40, 28, 19, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card:hover {
+  border-color: #DDB892;
+  box-shadow: 0 20px 40px -15px rgba(40, 28, 19, 0.1);
+}

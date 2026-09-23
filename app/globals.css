@@ -1,39 +1,53 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FBFBF7;
-  --foreground: #281C13;
-  --levino-espresso: #281C13;
-  --levino-espresso-dark: #1E140C;
-  --levino-espresso-light: #352318;
-  --levino-cream: #FBFBF7;
-  --levino-surface: #F5F4EE;
-  --levino-border: #EDECE4;
-  --levino-caramel: #9C6644;
-  --levino-terracotta: #6A472F;
-  --levino-earth: #7F5539;
-  --levino-sand: #DDB892;
-  --levino-sand-light: #E6CCB2;
-  --levino-burgundy: #801929;
+  --background: #F7F5EF;
+  --foreground: #24251F;
+
+  /* Luxury palette */
+  --levino-forest: #26352C;
+  --levino-forest-dark: #1B2921;
+  --levino-forest-light: #35483C;
+
+  --levino-ivory: #F7F5EF;
+  --levino-white: #FFFFFF;
+  --levino-surface: #EFEEE7;
+
+  --levino-border: #DDDCD3;
+
+  --levino-champagne: #B89A6A;
+  --levino-champagne-light: #D8C5A1;
+
+  --levino-stone: #6D6B61;
+  --levino-charcoal: #24251F;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-espresso: var(--levino-espresso);
-  --color-espresso-dark: var(--levino-espresso-dark);
-  --color-espresso-light: var(--levino-espresso-light);
-  --color-cream: var(--levino-cream);
+
+  --color-forest: var(--levino-forest);
+  --color-forest-dark: var(--levino-forest-dark);
+  --color-forest-light: var(--levino-forest-light);
+
+  --color-ivory: var(--levino-ivory);
+  --color-white: var(--levino-white);
   --color-surface: var(--levino-surface);
+
   --color-border-subtle: var(--levino-border);
-  --color-caramel: var(--levino-caramel);
-  --color-terracotta: var(--levino-terracotta);
-  --color-earth: var(--levino-earth);
-  --color-sand: var(--levino-sand);
-  --color-sand-light: var(--levino-sand-light);
-  --color-burgundy: var(--levino-burgundy);
-  --font-sans: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-serif: var(--font-playfair), Georgia, Cambria, "Times New Roman", Times, serif;
+
+  --color-champagne: var(--levino-champagne);
+  --color-champagne-light: var(--levino-champagne-light);
+
+  --color-stone: var(--levino-stone);
+  --color-charcoal: var(--levino-charcoal);
+
+  --font-sans: var(--font-inter), system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --font-serif: var(--font-playfair), Georgia, Cambria,
+    "Times New Roman", Times, serif;
+
   --font-script: var(--font-great-vibes), cursive;
 }
 
@@ -49,7 +63,8 @@ body {
   overflow-x: hidden;
 }
 
-/* Custom Typography Helpers */
+/* Luxury typography */
+
 .font-serif-luxury {
   font-family: var(--font-playfair), Georgia, serif;
 }
@@ -58,34 +73,58 @@ body {
   font-family: var(--font-great-vibes), cursive;
 }
 
-/* Custom subtle scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #FBFBF7;
-}
-::-webkit-scrollbar-thumb {
-  background: #DDB892;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #9C6644;
+/* Smooth image and element transitions */
+
+img {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Subtle luxury borders & card glow */
-.luxury-border {
-  border-color: #EDECE4;
+/* Premium scrollbar */
+
+::-webkit-scrollbar {
+  width: 7px;
 }
+
+::-webkit-scrollbar-track {
+  background: var(--levino-ivory);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--levino-champagne);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--levino-forest);
+}
+
+/* Refined borders */
+
+.luxury-border {
+  border-color: var(--levino-border);
+}
+
+/* Premium cards */
 
 .luxury-card {
-  background: #FFFFFF;
-  border: 1px solid #EDECE4;
-  box-shadow: 0 10px 30px -10px rgba(40, 28, 19, 0.05);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--levino-white);
+  border: 1px solid var(--levino-border);
+  box-shadow: 0 8px 30px rgba(36, 37, 31, 0.045);
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease;
 }
 
 .luxury-card:hover {
-  border-color: #DDB892;
-  box-shadow: 0 20px 40px -15px rgba(40, 28, 19, 0.1);
+  border-color: var(--levino-champagne-light);
+  box-shadow: 0 18px 45px rgba(36, 37, 31, 0.09);
+  transform: translateY(-3px);
+}
+
+/* Elegant selection */
+
+::selection {
+  background: var(--levino-champagne-light);
+  color: var(--levino-forest-dark);
 }
