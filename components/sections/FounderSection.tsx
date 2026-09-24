@@ -1,53 +1,56 @@
-"use client";
-
-import React from "react";
-import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
-import { FOUNDER_QUOTE } from "@/data/levinoData";
-
-export const FounderSection: React.FC = () => {
+export function FounderSection() {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="relative bg-[#281C13] text-[#FBFBF7] rounded-3xl p-8 sm:p-12 md:p-16 shadow-xl overflow-hidden border border-[#DDB892]/30 text-center"
-      >
-        {/* Ambient background glow inside card */}
-        <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#9C6644]/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-[#DDB892]/15 rounded-full blur-3xl pointer-events-none" />
+    <section className="bg-[#26352C] px-6 py-24 text-[#F7F5EF] md:px-12 lg:px-20">
+      <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+        {/* Image */}
+        <div className="relative">
+          <div className="overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85"
+              alt="Levino Daman property"
+              className="h-[520px] w-full object-cover"
+            />
+          </div>
+
+          <div className="absolute -bottom-5 -right-5 hidden h-28 w-28 border border-[#B89A6A] md:block" />
+        </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-3xl mx-auto space-y-6">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 text-[#DDB892] mx-auto">
-            <Quote className="w-6 h-6" />
-          </div>
+        <div className="lg:pl-10">
+          <p className="mb-5 text-xs font-medium uppercase tracking-[0.3em] text-[#D8C5A1]">
+            Our Story
+          </p>
 
-          <div className="space-y-1">
-            <span className="text-xs uppercase tracking-widest text-[#DDB892] font-semibold">
-              {FOUNDER_QUOTE.subtitle}
-            </span>
-            <h2 className="font-serif-luxury text-3xl sm:text-4xl font-normal text-white">
-              {FOUNDER_QUOTE.title}
-            </h2>
-          </div>
+          <h2 className="font-serif-luxury text-4xl leading-tight md:text-5xl lg:text-6xl">
+            Built with a love
+            <br />
+            for Daman.
+          </h2>
 
-          <blockquote className="font-serif-luxury text-lg sm:text-xl md:text-2xl font-light text-[#FBFBF7]/90 leading-relaxed italic">
-            &ldquo;{FOUNDER_QUOTE.quote}&rdquo;
-          </blockquote>
+          <div className="mt-8 h-px w-20 bg-[#B89A6A]" />
 
-          <div className="pt-4 border-t border-white/10 flex flex-col items-center">
-            <span className="font-script-accent text-3xl text-[#DDB892]">
-              …a home away from home
-            </span>
-            <p className="text-xs uppercase tracking-widest text-white/60 mt-1">
-              {FOUNDER_QUOTE.brand}
+          <p className="mt-8 text-base leading-8 text-[#D5D7D0]">
+            Levino began with a simple idea — to create a place where people
+            could step away from the rush of everyday life and enjoy meaningful
+            time together.
+          </p>
+
+          <p className="mt-5 text-base leading-8 text-[#D5D7D0]">
+            What started as a vision has grown into a hospitality experience
+            shaped by warmth, comfort and the natural beauty of Daman.
+          </p>
+
+          <div className="mt-10">
+            <p className="font-serif-luxury text-2xl text-[#F1EDE2]">
+              “Hospitality is about making people feel at home.”
+            </p>
+
+            <p className="mt-4 text-xs uppercase tracking-[0.25em] text-[#B89A6A]">
+              The Levino Team
             </p>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
-};
+}

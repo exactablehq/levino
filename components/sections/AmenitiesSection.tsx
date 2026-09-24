@@ -1,80 +1,152 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { Waves, Utensils, Briefcase, Sparkles } from "lucide-react";
-import { AMENITIES, Amenity } from "@/data/levinoData";
+import { ArrowUpRight } from "lucide-react";
 
-const iconMap: Record<string, React.ReactNode> = {
-  Waves: <Waves className="w-5 h-5 text-[#9C6644]" />,
-  Utensils: <Utensils className="w-5 h-5 text-[#9C6644]" />,
-  Briefcase: <Briefcase className="w-5 h-5 text-[#9C6644]" />,
-  Sparkles: <Sparkles className="w-5 h-5 text-[#9C6644]" />,
-};
+const amenities = [
+  {
+    title: "Poolside Relaxation",
+    description:
+      "A refreshing swimming pool surrounded by greenery — perfect for relaxing afternoons and family fun.",
+    image: "/poolside-relaxation.jpg",
+  },
+  {
+    title: "Multi-Cuisine Restaurant",
+    description:
+      "Enjoy delicious vegetarian and non-vegetarian meals freshly prepared by our chefs.",
+    image: "/multicuisine-restaurant.avif",
+  },
+  {
+    title: "Conference & Event Spaces",
+    description:
+      "Modern facilities for corporate meetings, celebrations, and private events.",
+    image: "/conference-events.webp",
+  },
+  {
+    title: "Lush Green Lawns",
+    description:
+      "Open green spaces perfect for weddings, celebrations, and outdoor gatherings.",
+    image: "/lush green lawns.avif",
+  },
+];
 
-export const AmenitiesSection: React.FC = () => {
+export function AmenitiesSection() {
   return (
-    <section id="amenities" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#F5F4EE] scroll-mt-20">
-      <div className="max-w-7xl mx-auto space-y-16">
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="font-script-accent text-3xl text-[#9C6644] block">
-            Thoughtfully designed
-          </span>
-          <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl text-[#281C13] font-medium">
-            Amenities.
-          </h2>
-          <p className="text-sm sm:text-base text-[#6A472F] font-normal">
-            Everything you need for a restorative stay, celebration, or productive retreat in Daman.
-          </p>
-        </div>
+    <section
+      id="amenities"
+      className="bg-[#F7F5EF] px-6 py-28 sm:px-10 lg:px-16 lg:py-36"
+    >
+      <div className="mx-auto max-w-6xl">
 
-        {/* 4-Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {AMENITIES.map((amenity: Amenity, index: number) => (
-            <motion.div
-              key={amenity.id}
-              initial={{ opacity: 0, y: 25 }}
+        {/* Elegant Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="mb-20"
+        >
+          <p className="mb-6 text-[10px] font-medium uppercase tracking-[0.45em] text-[#9A7955]">
+            The Art of Staying
+          </p>
+
+          <h2 className="max-w-4xl font-serif-luxury text-[3.2rem] font-normal leading-[1.02] tracking-[-0.035em] text-[#29241F] sm:text-6xl lg:text-[5.5rem]">
+            Thoughtfully designed
+            <br />
+            <span className="italic text-[#74675F]">
+              for every moment.
+            </span>
+          </h2>
+
+          <div className="mt-8 h-px w-20 bg-[#B9A58D]" />
+
+          <p className="mt-7 max-w-xl text-[14px] leading-7 tracking-wide text-[#746B64]">
+            From peaceful mornings by the pool to unforgettable celebrations,
+            every detail at Levino is designed to make your stay feel
+            effortless.
+          </p>
+        </motion.div>
+
+        {/* Amenities */}
+        <div className="grid gap-x-10 gap-y-20 md:grid-cols-2">
+          {amenities.map((amenity, index) => (
+            <motion.article
+              key={amenity.title}
+              initial={{ opacity: 0, y: 45 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -6 }}
-              className="bg-white rounded-2xl overflow-hidden border border-[#EDECE4] shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col group"
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{
+                duration: 0.9,
+                delay: index * 0.12,
+              }}
+              className="group"
             >
-              {/* Card Image */}
-              <div className="relative aspect-4/3 w-full overflow-hidden bg-[#EDECE4]">
-                <Image
+              {/* Image */}
+              <div className="relative overflow-hidden bg-[#DED8CF]">
+                <img
                   src={amenity.image}
                   alt={amenity.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="h-[370px] w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.04] sm:h-[450px]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                <div className="absolute top-3 left-3 p-2 bg-white/90 backdrop-blur-md rounded-xl shadow-xs">
-                  {iconMap[amenity.iconName]}
+
+                {/* Soft image overlay */}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-60 transition-opacity duration-700 group-hover:opacity-30" />
+
+                {/* Number */}
+                <div className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full border border-white/50 bg-white/80 text-[10px] tracking-[0.15em] text-[#3A3028] backdrop-blur-md">
+                  0{index + 1}
+                </div>
+
+                {/* Hover circle */}
+                <div className="absolute bottom-5 right-5 flex h-12 w-12 translate-y-3 items-center justify-center rounded-full bg-white/90 opacity-0 shadow-lg backdrop-blur-md transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                  <ArrowUpRight className="h-4 w-4 text-[#40362F]" />
                 </div>
               </div>
 
-              {/* Card Content */}
-              <div className="p-6 flex-1 flex flex-col justify-between space-y-3">
-                <div className="space-y-1.5">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#9C6644]">
-                    {amenity.subtitle}
+              {/* Text */}
+              <div className="relative border-b border-[#D5CDC3] pb-8 pt-7">
+                <div className="flex items-start justify-between gap-8">
+
+                  <div>
+                    <p className="mb-3 font-serif-luxury text-[13px] italic tracking-[0.08em] text-[#9A7955]">
+                      Levino
+                    </p>
+
+                    <h3 className="font-serif-luxury text-[2rem] font-normal leading-[1.1] tracking-[-0.02em] text-[#29241F] sm:text-[2.4rem]">
+                      {amenity.title}
+                    </h3>
+
+                    <p className="mt-4 max-w-md text-[13px] leading-7 tracking-wide text-[#746B64]">
+                      {amenity.description}
+                    </p>
+                  </div>
+
+                  <span className="mt-1 text-[11px] tracking-[0.2em] text-[#9A7955]">
+                    0{index + 1}
                   </span>
-                  <h3 className="font-serif-luxury text-lg font-semibold text-[#281C13] group-hover:text-[#6A472F] transition-colors">
-                    {amenity.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#6A472F] leading-relaxed pt-1">
-                    {amenity.description}
-                  </p>
+
                 </div>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
+
+        {/* Closing Statement */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2 }}
+          className="mt-24 border-t border-[#D5CDC3] pt-10"
+        >
+          <p className="font-serif-luxury text-3xl leading-tight tracking-[-0.02em] text-[#3A3028] sm:text-4xl">
+            A stay designed around
+            <span className="italic text-[#8A7867]"> you.</span>
+          </p>
+        </motion.div>
+
       </div>
     </section>
   );
-};
+}

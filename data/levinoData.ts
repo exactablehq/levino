@@ -48,9 +48,21 @@ export const LEVINO_CONTACT = {
   name: "Levino Daman",
   tagline: "…a home away from home",
   phones: [
-    { label: "Front Desk & Reservations", number: "+91 95122 12280", clean: "+919512212280" },
-    { label: "Events & Weddings", number: "+91 99137 13747", clean: "+919913713747" },
-    { label: "Guest Support", number: "+91 82919 98806", clean: "+918291998806" },
+    {
+      label: "Front Desk & Reservations",
+      number: "+91 95122 12280",
+      clean: "+919512212280",
+    },
+    {
+      label: "Events & Weddings",
+      number: "+91 99137 13747",
+      clean: "+919913713747",
+    },
+    {
+      label: "Guest Support",
+      number: "+91 82919 98806",
+      clean: "+918291998806",
+    },
   ],
   primaryPhone: "+91 95122 12280",
   primaryPhoneClean: "+919512212280",
@@ -80,9 +92,13 @@ export const PROPERTIES: Property[] = [
       "Multi-Cuisine Banquet Catering",
       "Dedicated Wedding & Event Concierge",
     ],
-    image:
-      "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=1200&auto=format&fit=crop",
-    features: ["Weddings & Receptions", "Banquet Hall", "Lush Lawns", "VIP Suites"],
+    image: "/levibo-meadows.jpg",
+    features: [
+      "Weddings & Receptions",
+      "Banquet Hall",
+      "Lush Lawns",
+      "VIP Suites",
+    ],
   },
   {
     id: "palms",
@@ -101,9 +117,13 @@ export const PROPERTIES: Property[] = [
       "Multi-Cuisine In-House Restaurant",
       "Tranquil Palm-Fringed Gardens",
     ],
-    image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop",
-    features: ["Swimming Pool", "5 Min to Beach", "Family Stays", "Restaurant"],
+    image: "/levino-palms.jpg",
+    features: [
+      "Swimming Pool",
+      "5 Min to Beach",
+      "Family Stays",
+      "Restaurant",
+    ],
   },
 ];
 
