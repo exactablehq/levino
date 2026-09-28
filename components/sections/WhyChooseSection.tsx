@@ -53,7 +53,7 @@ export function WhyChooseSection() {
   return (
     <section
       id="why-choose"
-      className="overflow-hidden bg-[#D8C9B8] px-6 py-24 text-[#302820] sm:px-10 lg:px-16 lg:py-32"
+      className="overflow-hidden bg-[#F3EFE7] px-6 py-24 text-[#302820] sm:px-10 lg:px-16 lg:py-32"
     >
       <div className="mx-auto max-w-6xl">
 
@@ -176,6 +176,7 @@ export function WhyChooseSection() {
                 }}
                 className="group relative grid gap-5 border-b border-[#B9A995] py-8 transition-all duration-500 md:grid-cols-[65px_1fr_1.4fr_50px] md:items-center md:gap-8"
               >
+
                 {/* Hover background */}
                 <div className="pointer-events-none absolute inset-x-0 inset-y-1 bg-white/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
@@ -226,6 +227,7 @@ export function WhyChooseSection() {
 
             <div className="flex items-center gap-3">
               <span className="h-px w-12 bg-[#9D846C]" />
+
               <span className="font-serif-luxury text-sm italic text-[#806A55]">
                 Levino Daman
               </span>
