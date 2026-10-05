@@ -2,217 +2,224 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Phone, Menu, X, Calendar, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { LevinoLogo } from "../ui/LevinoLogo";
+import { CtaButton } from "../ui/CtaButton";
 import { LEVINO_CONTACT } from "@/data/levinoData";
-import { Button } from "../ui/Button";
 
 interface NavbarProps {
-  onOpenBooking: (destination?: string) => void;
+  onOpenBooking?: (destination?: string) => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 40);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: "Home", href: "#" },
-    { label: "Levino Palms", href: "#palms" },
-    { label: "Levino Meadows", href: "#meadows" },
-    { label: "Amenities", href: "#amenities" },
-    { label: "Weddings & Events", href: "#weddings" },
-    { label: "Explore Daman", href: "#explore-daman" },
-    { label: "FAQ", href: "#faq" },
+  // Prevent background scroll when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [menuOpen]);
+
+  const navItems = [
+    { number: "01", label: "Home", href: "#hero" },
+    { number: "02", label: "The Levino Experience", href: "#services" },
+    { number: "03", label: "Amenities", href: "#projects" },
+    { number: "04", label: "Why Levino", href: "#features" },
+    { number: "05", label: "Founder's Vision", href: "#vision" },
+    { number: "06", label: "Guest Reviews", href: "#testimonials" },
+    { number: "07", label: "Explore Daman", href: "#blogs" },
+    { number: "08", label: "FAQ", href: "#faq" },
   ];
 
-  const handleNavClick = (href: string) => {
-    setMobileMenuOpen(false);
-    if (href === "#" || href === "") {
+  const handleLinkClick = (href: string) => {
+    setMenuOpen(false);
+    if (href === "#hero" || href === "#") {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
-    if (href.startsWith("#")) {
-      const targetId = href.slice(1);
-      const el = document.getElementById(targetId);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
     <>
+      {/* Floating Header */}
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? "bg-[#FBFBF7]/92 backdrop-blur-md shadow-xs border-b border-[#EDECE4] py-3"
-            : "bg-transparent py-5"
+            ? "bg-[#FBFBF7]/90 backdrop-blur-md py-4 shadow-xs border-b border-[#EDECE4]/80"
+            : "bg-transparent py-6 md:py-8"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Brand Logo */}
-          <Link href="/" className="group flex flex-col cursor-pointer select-none">
-            <span className="font-serif-luxury text-2xl md:text-3xl font-bold tracking-[0.18em] text-[#281C13] transition-colors group-hover:text-[#6A472F]">
-              LEVINO
-            </span>
-            <span className="font-script-accent text-sm md:text-base text-[#9C6644] -mt-1 tracking-normal">
-              …a home away from home
-            </span>
+        <div className="max-w-[1280px] mx-auto px-6 md:px-10 flex items-center justify-between">
+          {/* Logo */}
+          <Link href="#hero" onClick={() => handleLinkClick("#hero")} className="cursor-pointer">
+            <LevinoLogo />
           </Link>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-7">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(link.href);
-                }}
-                className="text-xs font-medium uppercase tracking-[0.12em] text-[#281C13]/80 hover:text-[#281C13] transition-colors relative py-1 group"
-              >
-                {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#9C6644] transition-all duration-200 group-hover:w-full" />
-              </a>
-            ))}
-          </nav>
-
-          {/* Desktop Header Actions */}
-          <div className="hidden lg:flex items-center gap-4">
+          {/* Right Header Actions */}
+          <div className="flex items-center gap-4">
+            {/* Direct Call Button (Desktop) */}
             <a
-              href={`tel:${LEVINO_CONTACT.primaryPhoneClean}`}
-              className="inline-flex items-center gap-2 text-xs font-medium tracking-wider uppercase text-[#6A472F] hover:text-[#281C13] transition-colors px-3 py-2 rounded-full hover:bg-[#EDECE4]/50"
+              href="tel:+919913713747"
+              className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider text-[#281C13] bg-[#EDECE4] hover:bg-[#E6CCB2] transition-colors"
             >
-              <Phone className="w-3.5 h-3.5 text-[#9C6644]" />
-              <span>{LEVINO_CONTACT.primaryPhone}</span>
+              <span>+91 99137 13747</span>
             </a>
 
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={() => onOpenBooking()}
-              icon={<Calendar className="w-3.5 h-3.5" />}
-            >
-              Book Stay
-            </Button>
-          </div>
-
-          {/* Mobile Hamburger Button */}
-          <div className="flex lg:hidden items-center gap-2">
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={() => onOpenBooking()}
-              className="!px-3.5 !py-1.5 !text-[11px]"
-            >
-              Book
-            </Button>
+            {/* Menu Trigger Capsule */}
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-[#281C13] hover:bg-[#EDECE4] rounded-lg transition-colors cursor-pointer"
-              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              onClick={() => setMenuOpen(true)}
+              className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-[#281C13] text-white hover:bg-[#352318] transition-all duration-200 cursor-pointer text-xs uppercase tracking-widest font-semibold shadow-sm"
+              aria-label="Open navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <span>MENU</span>
+              <span className="flex flex-col gap-1 w-4">
+                <span className="w-4 h-0.5 bg-white rounded-full"></span>
+                <span className="w-2.5 h-0.5 bg-white rounded-full ml-auto"></span>
+              </span>
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Drawer Menu */}
+      {/* 2-Tier Animated Curtain Sheet Menu */}
       <AnimatePresence>
-        {mobileMenuOpen && (
-          <div className="fixed inset-0 z-50 lg:hidden">
-            {/* Backdrop */}
+        {menuOpen && (
+          <div className="fixed inset-0 z-50 flex flex-col">
+            {/* Backdrop Layer 1: Terracotta */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 bg-[#281C13]/50 backdrop-blur-xs"
+              initial={{ y: "-100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "-100%" }}
+              transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+              className="fixed inset-0 bg-[#9C6644] rounded-b-[40px] md:rounded-b-[80px] z-10 pointer-events-none"
             />
 
-            {/* Slide-out Drawer */}
+            {/* Backdrop Layer 2: Main Dark Content Sheet */}
             <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 right-0 bottom-0 w-4/5 max-w-sm bg-[#FBFBF7] shadow-2xl p-6 flex flex-col justify-between overflow-y-auto border-l border-[#EDECE4]"
+              initial={{ y: "-100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "-100%" }}
+              transition={{ duration: 0.6, delay: 0.05, ease: [0.76, 0, 0.24, 1] }}
+              className="fixed inset-0 bg-[#281C13] text-white rounded-b-[40px] md:rounded-b-[80px] z-20 flex flex-col overflow-y-auto px-6 md:px-16 py-8 md:py-10 max-h-[96vh] shadow-2xl"
             >
-              <div>
-                {/* Top bar inside drawer */}
-                <div className="flex items-center justify-between pb-6 border-b border-[#EDECE4]">
-                  <div>
-                    <span className="font-serif-luxury text-2xl font-bold tracking-[0.16em] text-[#281C13]">
-                      LEVINO
-                    </span>
-                    <span className="font-script-accent text-sm text-[#9C6644] block">
-                      …a home away from home
-                    </span>
-                  </div>
-                  <button
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="p-2 text-[#281C13] hover:bg-[#EDECE4] rounded-full"
-                    aria-label="Close menu"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
+              {/* Menu Top Bar */}
+              <div className="max-w-[1280px] w-full mx-auto flex items-center justify-between pb-8 border-b border-white/10 shrink-0">
+                <div className="cursor-pointer" onClick={() => handleLinkClick("#hero")}>
+                  <LevinoLogo />
                 </div>
 
-                {/* Mobile Navigation Links */}
-                <nav className="py-6 flex flex-col gap-1">
-                  {navLinks.map((link) => (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleNavClick(link.href);
-                      }}
-                      className="flex items-center justify-between py-3 px-2 text-sm uppercase tracking-wider font-medium text-[#281C13] hover:bg-[#EDECE4]/60 rounded-lg transition-colors"
-                    >
-                      <span>{link.label}</span>
-                      <ChevronRight className="w-4 h-4 text-[#9C6644]" />
-                    </a>
-                  ))}
-                </nav>
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer text-xs uppercase tracking-widest font-semibold border border-white/10"
+                  aria-label="Close navigation menu"
+                >
+                  <span>CLOSE</span>
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L13 13M1 13L13 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                </button>
               </div>
 
-              {/* Bottom Quick Actions inside drawer */}
-              <div className="pt-6 border-t border-[#EDECE4] space-y-3">
-                <Button
-                  variant="primary"
-                  size="md"
-                  className="w-full"
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onOpenBooking();
-                  }}
-                  icon={<Calendar className="w-4 h-4" />}
-                >
-                  Book Your Stay
-                </Button>
+              {/* Menu Main Grid */}
+              <div className="max-w-[1280px] w-full mx-auto py-10 md:py-14 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 flex-1 items-center">
+                {/* Left: Navigation Links */}
+                <div className="lg:col-span-7 flex flex-col space-y-3 md:space-y-4">
+                  {navItems.map((item, idx) => (
+                    <motion.a
+                      key={item.label}
+                      href={item.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleLinkClick(item.href);
+                      }}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.2 + idx * 0.05, duration: 0.4 }}
+                      className="group flex items-baseline gap-4 text-xl sm:text-2xl md:text-3xl font-serif tracking-wide text-white/80 hover:text-white transition-colors cursor-pointer"
+                    >
+                      <span className="text-xs font-sans text-[#DDB892] tracking-widest uppercase">
+                        {item.number}
+                      </span>
+                      <span className="group-hover:translate-x-2 transition-transform duration-200">
+                        {item.label}
+                      </span>
+                    </motion.a>
+                  ))}
+                </div>
 
-                <a
-                  href={`tel:${LEVINO_CONTACT.primaryPhoneClean}`}
-                  className="flex items-center justify-center gap-2 w-full py-3 text-xs font-semibold uppercase tracking-wider text-[#281C13] bg-[#EDECE4] rounded-full hover:bg-[#E6CCB2] transition-colors"
-                >
-                  <Phone className="w-4 h-4 text-[#9C6644]" />
-                  <span>Call: {LEVINO_CONTACT.primaryPhone}</span>
-                </a>
+                {/* Right: Contact Details & Quick Booking */}
+                <div className="lg:col-span-5 flex flex-col justify-between space-y-8 bg-white/5 p-8 md:p-10 rounded-[30px] border border-white/10">
+                  <div>
+                    <span className="text-xs uppercase tracking-widest text-[#DDB892] font-semibold block mb-3">
+                      Experience Daman
+                    </span>
+                    <h3 className="font-serif text-2xl md:text-3xl text-white mb-4">
+                      Where timeless elegance meets effortless comfort
+                    </h3>
+                    <p className="text-sm text-white/70 leading-relaxed font-sans mb-6">
+                      5 Minutes from Devka Beach. Whether planning a quiet holiday, destination wedding, or grand celebration, Levino is ready to welcome you.
+                    </p>
+                  </div>
 
-                <p className="text-[11px] text-center text-[#7F5539] pt-2">
-                  5 Minutes from Devka Beach, Daman
-                </p>
+                  <div className="space-y-3 text-sm text-white/80 font-sans border-t border-white/10 pt-6">
+                    <div className="flex items-center justify-between">
+                      <span className="text-white/50 text-xs uppercase tracking-wider">Phone</span>
+                      <a href="tel:+919913713747" className="hover:text-[#DDB892] transition-colors font-medium">
+                        +91 99137 13747 / +91 97241 13747
+                      </a>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-white/50 text-xs uppercase tracking-wider">Email</span>
+                      <a href="mailto:levinodaman@gmail.com" className="hover:text-[#DDB892] transition-colors font-medium">
+                        levinodaman@gmail.com
+                      </a>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-white/50 text-xs uppercase tracking-wider">Location</span>
+                      <span className="font-medium text-white/90">Devka Beach Road, Daman</span>
+                    </div>
+                  </div>
+
+                  <div className="pt-2 flex flex-col sm:flex-row gap-3">
+                    <CtaButton
+                      href="tel:+919913713747"
+                      variant="terracotta"
+                      className="w-full justify-center"
+                    >
+                      Call Reception
+                    </CtaButton>
+                    {onOpenBooking && (
+                      <button
+                        onClick={() => {
+                          setMenuOpen(false);
+                          onOpenBooking();
+                        }}
+                        className="px-6 py-3.5 rounded-full text-sm font-medium tracking-wide bg-white/10 text-white hover:bg-white/20 transition-colors border border-white/10"
+                      >
+                        Book Stay
+                      </button>
+                    )}
+                  </div>
+                </div>
               </div>
             </motion.div>
           </div>

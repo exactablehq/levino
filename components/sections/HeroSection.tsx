@@ -2,96 +2,118 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Phone } from "lucide-react";
-import { LEVINO_CONTACT } from "@/data/levinoData";
 
 interface HeroSectionProps {
-  onOpenBooking: () => void;
+  onOpenBooking?: () => void;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({
-  onOpenBooking,
-}) => {
+export const HeroSection: React.FC<HeroSectionProps> = () => {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-black text-white">
-
-      {/* HERO VIDEO */}
-      <div className="absolute inset-0">
+    <section
+      id="hero"
+      className="relative w-full h-screen min-h-screen sm:min-h-screen max-h-screen md:h-screen overflow-hidden bg-black text-white flex flex-col justify-end"
+    >
+      {/* Background Hero Video & Poster */}
+      <div className="absolute inset-0 z-0">
         <video
-          src="/levino-hero.mp4"
+          src="https://framerusercontent.com/assets/8tLtwARxl8CXao3mJSEPRt62nI4.mp4"
+          poster="https://framerusercontent.com/images/QVE31PSHNEtlXTxBztuLbHJnT1I.png?width=2752&height=1536"
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover object-center"
         />
 
-        {/* Main cinematic overlay */}
-        <div className="absolute inset-0 bg-black/25" />
-
-        {/* Slight bottom gradient for readability */}
-        <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-
-        {/* Very subtle overall vignette */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-transparent to-black/10" />
+        {/* Dual Cinematic Blur & Fade Overlays Matching Live Framer site */}
+        <div
+          className="absolute inset-0 z-10 pointer-events-none backdrop-blur-[6px] bg-black/60"
+          style={{
+            maskImage: "linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)",
+            WebkitMaskImage: "linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 z-10 pointer-events-none backdrop-blur-[6px] bg-black/75"
+          style={{
+            maskImage: "linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0) 80%)",
+            WebkitMaskImage: "linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0) 80%)",
+          }}
+        />
       </div>
 
-      {/* HERO CONTENT */}
-      <div className="relative z-10 flex min-h-screen flex-col justify-end">
-
-        <div className="w-full px-6 pb-14 sm:px-10 sm:pb-16 md:px-14 lg:px-20 lg:pb-20">
-
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 1.2,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="max-w-[650px]"
-          >
-
-            {/* LEVINO HANDWRITTEN / DISPLAY TITLE */}
-            <h1
-              className="relative -translate-y-10 text-[clamp(2.8rem,6vw,5.5rem)] font-normal leading-[0.88] tracking-[-0.045em]"
-              style={{
-                fontFamily: "cursive",
-                color: "#9B1C24",
-              }}
-            >
-              Levino
+      {/* Hero Content Container */}
+      <div className="relative z-20 w-full max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12 pb-16 sm:pb-20 lg:pb-24">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-start text-left"
+        >
+          {/* Main Stacked Headline */}
+          <div className="max-w-[700px] mb-5 sm:mb-6">
+            <h1 className="font-serif font-normal text-[34px] sm:text-[48px] lg:text-[60px] leading-[1.08] tracking-[-0.02em] text-white">
+              <span className="inline-block mr-3">Where</span>
+              <span className="inline-block mr-3">timeless</span>
+              <span className="inline-block mr-3">elegance</span>
+              <span className="inline-block mr-3">meets</span>
+              <span className="inline-block mr-3">effortless</span>
+              <span className="inline-block italic font-normal">comfort</span>
             </h1>
+          </div>
 
-            {/* TAGLINE */}
-            <p className="mt-3 max-w-[650px] text-[21px] font-semibold leading-[1.4] tracking-[0.01em] text-white sm:text-[24px]">
-              Where timeless elegance meets effortless comfort.
+          {/* Subtitle Paragraph */}
+          <div className="max-w-[500px] mb-8 sm:mb-10">
+            <p className="font-sans font-normal text-[18px] sm:text-[22px] lg:text-[24px] leading-[1.35] tracking-[-0.01em] text-[#EDECE4]">
+              Levino Palms and Levino Meadows — two distinct destinations, united by a promise of refined hospitality, private retreats, and curated luxury amidst open green spaces.
             </p>
-            {/* DESCRIPTION */}
-            <p className="mt-4 max-w-[520px] text-[13px] font-light leading-6 text-white/75 sm:text-sm">
-              Levino Palms and Levino Meadows — two distinct destinations,
-              united by a promise of refined hospitality, private retreats,
-              and curated luxury amidst open green spaces.
-            </p>
+          </div>
 
-            {/* CALL RECEPTION */}
-            <div className="mt-7">
-              <a
-                href={`tel:${LEVINO_CONTACT.primaryPhoneClean}`}
-                className="group inline-flex items-center gap-3 border-b border-white/70 pb-2 text-[13px] font-medium tracking-[0.04em] transition-all duration-300 hover:border-white hover:text-white/80"
-              >
-                <Phone
-                  className="h-[15px] w-[15px] transition-transform duration-300 group-hover:scale-105"
-                  strokeWidth={1.5}
-                />
-
-                <span>Call Reception</span>
-              </a>
-            </div>
-
-          </motion.div>
-        </div>
+          {/* Call Reception CTA Pill Button */}
+          <div>
+            <motion.a
+              href="tel:+919913713747"
+              whileHover="hover"
+              initial="initial"
+              className="inline-flex items-center p-1.5 rounded-[130px] bg-white/5 backdrop-blur-xs border border-white/10 shadow-[10px_10px_30px_rgba(0,0,0,0.12)] transition-colors group cursor-pointer"
+            >
+              <div className="flex items-center gap-3 px-7 sm:px-8 py-3.5 sm:py-4 rounded-[80px] bg-white text-[#1A0D1C] group-hover:bg-[#FBFBF7] transition-colors">
+                <span className="font-sans text-base sm:text-lg lg:text-[20px] font-normal tracking-normal">
+                  Call Reception
+                </span>
+                <motion.span
+                  variants={{
+                    initial: { x: 0, y: 0 },
+                    hover: { x: 3, y: -3 },
+                  }}
+                  transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                  className="w-5 h-5 flex items-center justify-center shrink-0"
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="rotate-[-40deg]"
+                  >
+                    <path
+                      d="M5 12H19M19 12L12 5M19 12L12 19"
+                      stroke="#1A0D1C"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </motion.span>
+              </div>
+            </motion.a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 };
+
+export default HeroSection;

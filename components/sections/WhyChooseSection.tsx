@@ -1,242 +1,119 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import {
-  MapPin,
-  PartyPopper,
-  BedDouble,
-  TreePine,
-  HeartHandshake,
-  ArrowUpRight,
-} from "lucide-react";
+import Image from "next/image";
+import { SectionBadge } from "../ui/SectionBadge";
 
-const reasons = [
-  {
-    number: "01",
-    title: "Prime Location",
-    description:
-      "Just a short walk from Devka Beach, offering easy access to the coast while keeping you surrounded by peace and privacy.",
-    icon: MapPin,
-  },
-  {
-    number: "02",
-    title: "Ideal for Celebrations",
-    description:
-      "Spacious lawns and elegant event spaces create the perfect setting for weddings, celebrations, and memorable gatherings.",
-    icon: PartyPopper,
-  },
-  {
-    number: "03",
-    title: "Comfortable Stays",
-    description:
-      "Thoughtfully designed rooms across Levino Palms and Levino Meadows, created for restful stays and everyday comfort.",
-    icon: BedDouble,
-  },
-  {
-    number: "04",
-    title: "Natural Surroundings",
-    description:
-      "Lush greenery, open skies, palm trees, and peaceful outdoor spaces bring a relaxed coastal feeling to every stay.",
-    icon: TreePine,
-  },
-  {
-    number: "05",
-    title: "Personalized Hospitality",
-    description:
-      "Warm and attentive service designed to make every guest feel comfortable, welcomed, and truly at home.",
-    icon: HeartHandshake,
-  },
+const features = [
+  { icon: "📍", label: "Prime Location" },
+  { icon: "🎉", label: "Ideal for Celebrations" },
+  { icon: "🛌", label: "Comfortable Stays" },
+  { icon: "🌴", label: "Natural Surroundings" },
+  { icon: "✨", label: "Personalized Hospitality" },
+];
+
+const galleryImages = [
+  "https://framerusercontent.com/images/7TZQFwcxx32uU2MMo8YvmT5Lb8.jpg",
+  "https://framerusercontent.com/images/xYIvc4idBNTWCTMCmU4nep7fKg.jpg",
+  "https://framerusercontent.com/images/9EU334TrB3M9FzWbaLc5xw9HQU.jpg",
+  "https://framerusercontent.com/images/WLklufoflxXTSJcVcysZn47hvk.jpg",
+  "https://framerusercontent.com/images/gT6rhgnj2vKLjMTLmGTGddghffU.jpg",
+  "https://framerusercontent.com/images/YQGMpjyep3xUPAxdjgDks2yX6M.jpg",
+  "https://framerusercontent.com/images/35NPGozrnsIxP4UuRCpZjn5sg.jpg",
+  "https://framerusercontent.com/images/mmdhqft6QxjMHK6SGGShVkN14.jpg",
+  "https://framerusercontent.com/images/lwHQuNr8ZYzamFCv3raR3sD6ocY.jpg",
+  "https://framerusercontent.com/images/4nDBFupHPz9sjT3x8hJFoiYCqM8.jpg",
 ];
 
 export function WhyChooseSection() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const scrollAmount = direction === "left" ? -400 : 400;
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
+
   return (
-    <section
-      id="why-choose"
-      className="overflow-hidden bg-[#F3EFE7] px-6 py-24 text-[#302820] sm:px-10 lg:px-16 lg:py-32"
-    >
-      <div className="mx-auto max-w-6xl">
-
-        {/* Small heading area */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9 }}
-          className="mb-16 max-w-2xl"
-        >
-          <p className="mb-5 text-[10px] uppercase tracking-[0.4em] text-[#8A6F55]">
-            Why Levino
-          </p>
-
-          <h2 className="font-serif-luxury text-4xl font-normal leading-[1.1] tracking-[-0.02em] text-[#302820] sm:text-5xl">
-            More than a stay,
-            <br />
-            <span className="italic text-[#756454]">
-              a place to remember.
+    <section id="features" className="py-20 md:py-28 bg-[#FBFBF7] overflow-hidden">
+      <div className="max-w-[1280px] mx-auto px-6 md:px-10">
+        {/* Heading */}
+        <div className="text-center mb-12">
+          <SectionBadge>Why Levino?</SectionBadge>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#281C13] mt-2">
+            Why choose{" "}
+            <span className="font-script text-4xl sm:text-5xl md:text-6xl text-[#9C6644] ml-1">
+              Levino
             </span>
           </h2>
-
-          <div className="mt-7 h-px w-16 bg-[#9D846C]" />
-
-          <p className="mt-6 max-w-lg text-[13px] leading-7 tracking-wide text-[#66594D]">
-            Thoughtful spaces, beautiful surroundings, and warm hospitality
-            come together to create the Levino experience.
+          <p className="text-sm md:text-base text-[#6A472F] max-w-xl mx-auto mt-3 font-sans">
+            Where hospitality meets tranquility.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Image + text */}
-        <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, y: 35 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="group relative overflow-hidden"
-          >
-            <div className="relative h-[430px] overflow-hidden sm:h-[520px]">
-
-              <img
-                src="/why levino.avif"
-                alt="Why choose Levino"
-                className="h-full w-full object-cover transition-transform duration-[1600ms] ease-out group-hover:scale-[1.035]"
-              />
-
-              {/* Soft overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-
-              {/* Fine inner border */}
-              <div className="pointer-events-none absolute inset-5 border border-white/35 transition-all duration-700 group-hover:inset-7" />
-
-              {/* Image caption */}
-              <div className="absolute bottom-7 left-7">
-                <p className="text-[9px] uppercase tracking-[0.4em] text-white/70">
-                  The Levino Experience
-                </p>
-
-                <p className="mt-2 font-serif-luxury text-2xl italic text-white">
-                  Stay. Celebrate. Remember.
-                </p>
-              </div>
-
-              {/* Hover button */}
-              <div className="absolute right-7 top-7 flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white opacity-0 backdrop-blur-md transition-all duration-500 group-hover:opacity-100">
-                <ArrowUpRight className="h-4 w-4" />
-              </div>
+        {/* 5 Feature Capsule Pills */}
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-14 max-w-4xl mx-auto">
+          {features.map((feat) => (
+            <div
+              key={feat.label}
+              className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-[#EDECE4] text-xs sm:text-sm font-medium text-[#281C13] shadow-2xs hover:border-[#DDB892] transition-colors"
+            >
+              <span className="text-base">{feat.icon}</span>
+              <span>{feat.label}</span>
             </div>
-          </motion.div>
+          ))}
+        </div>
+      </div>
 
-          {/* Intro copy */}
-          <motion.div
-            initial={{ opacity: 0, x: 25 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.15 }}
-            className="lg:pl-5"
+      {/* 10-Item Photo Carousel Slider */}
+      <div className="relative w-full max-w-[1440px] mx-auto px-4 sm:px-6">
+        {/* Navigation arrow buttons */}
+        <div className="flex justify-end gap-2 mb-4 px-6">
+          <button
+            onClick={() => scroll("left")}
+            className="w-10 h-10 rounded-full bg-white border border-[#EDECE4] text-[#281C13] hover:bg-[#FBFBF7] flex items-center justify-center cursor-pointer shadow-xs"
+            aria-label="Previous image"
           >
-            <p className="font-serif-luxury text-2xl leading-tight text-[#302820] sm:text-3xl">
-              Thoughtful spaces.
-              <br />
-              <span className="italic text-[#806A55]">
-                Genuine hospitality.
-              </span>
-            </p>
-
-            <p className="mt-6 max-w-md text-[13px] leading-7 text-[#66594D]">
-              Whether you are visiting for a peaceful getaway, celebrating a
-              special occasion, or gathering with family and friends, Levino
-              is designed around the moments that matter.
-            </p>
-
-            <div className="mt-8 h-px w-full bg-[#B9A995]" />
-
-            <p className="mt-5 text-[9px] uppercase tracking-[0.35em] text-[#8A6F55]">
-              What makes us different
-            </p>
-          </motion.div>
+            ←
+          </button>
+          <button
+            onClick={() => scroll("right")}
+            className="w-10 h-10 rounded-full bg-white border border-[#EDECE4] text-[#281C13] hover:bg-[#FBFBF7] flex items-center justify-center cursor-pointer shadow-xs"
+            aria-label="Next image"
+          >
+            →
+          </button>
         </div>
 
-        {/* Reasons */}
-        <div className="mt-20 border-t border-[#B9A995]">
-
-          {reasons.map((reason, index) => {
-            const Icon = reason.icon;
-
-            return (
-              <motion.div
-                key={reason.number}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{
-                  duration: 0.7,
-                  delay: index * 0.07,
-                }}
-                className="group relative grid gap-5 border-b border-[#B9A995] py-8 transition-all duration-500 md:grid-cols-[65px_1fr_1.4fr_50px] md:items-center md:gap-8"
-              >
-
-                {/* Hover background */}
-                <div className="pointer-events-none absolute inset-x-0 inset-y-1 bg-white/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-                {/* Number */}
-                <span className="relative z-10 text-[10px] tracking-[0.25em] text-[#8A6F55]">
-                  {reason.number}
-                </span>
-
-                {/* Title */}
-                <h3 className="relative z-10 font-serif-luxury text-2xl font-normal leading-tight tracking-[-0.015em] text-[#302820] transition-transform duration-500 group-hover:translate-x-1 sm:text-3xl">
-                  {reason.title}
-                </h3>
-
-                {/* Description */}
-                <p className="relative z-10 max-w-xl text-[12px] leading-6 tracking-wide text-[#66594D]">
-                  {reason.description}
-                </p>
-
-                {/* Icon */}
-                <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-[#9D846C] text-[#806A55] transition-all duration-500 group-hover:bg-[#806A55] group-hover:text-[#F7F1E9] group-hover:rotate-6">
-                  <Icon
-                    className="h-4 w-4"
-                    strokeWidth={1.3}
-                  />
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* Bottom statement */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="mt-20 border-t border-[#B9A995] pt-8"
+        <div
+          ref={scrollRef}
+          className="flex gap-6 overflow-x-auto pb-6 scrollbar-none snap-x snap-mandatory"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-
-            <p className="font-serif-luxury text-2xl leading-tight text-[#302820] sm:text-3xl">
-              Everything you need,
-              <br />
-              <span className="italic text-[#806A55]">
-                nothing you don't.
-              </span>
-            </p>
-
-            <div className="flex items-center gap-3">
-              <span className="h-px w-12 bg-[#9D846C]" />
-
-              <span className="font-serif-luxury text-sm italic text-[#806A55]">
-                Levino Daman
-              </span>
-            </div>
-
-          </div>
-        </motion.div>
-
+          {galleryImages.map((src, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.05 }}
+              className="relative shrink-0 w-[280px] sm:w-[360px] md:w-[420px] h-[260px] sm:h-[320px] rounded-[30px] overflow-hidden shadow-xs border border-[#EDECE4] snap-start"
+            >
+              <Image
+                src={src}
+                alt={`Levino Gallery image ${idx + 1}`}
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-700"
+                sizes="(min-width: 768px) 420px, 280px"
+              />
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
+
+export default WhyChooseSection;

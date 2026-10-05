@@ -6,6 +6,8 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 const greatVibes = Great_Vibes({
@@ -19,21 +21,28 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700", "900"],
 });
 
 export const metadata: Metadata = {
   title: "Levino Daman - 𝒶 𝒽𝑜𝓂𝑒 𝒶𝓌𝒶𝓎 𝒻𝓇𝑜𝓂 𝒽𝑜𝓂𝑒",
   description:
-    "Elegant Homely Stay. 5 Minutes from Devka Beach. Multi-Cuisine Restaurant. Expansive Lawns for Weddings & Celebrations.",
+    "Elegant Homely Stay. 5 Minutes from Devka Beach. Multi-Cuisine Restaurant.",
   openGraph: {
     title: "Levino Daman - 𝒶 𝒽𝑜𝓂𝑒 𝒶𝓌𝒶𝓎 𝒻𝓇𝑜𝓂 𝒽𝑜𝓂𝑒",
     description:
       "Elegant Homely Stay. 5 Minutes from Devka Beach. Multi-Cuisine Restaurant.",
     type: "website",
     url: "https://levino.in",
+    images: [
+      {
+        url: "https://framerusercontent.com/assets/bvnkNLwZ1CbPHEpibzvcdv1IrGc.png",
+      },
+    ],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "https://framerusercontent.com/images/O9ZVt2QSVAco0pl0LLsT4Paugq8.png",
+    apple: "https://framerusercontent.com/images/O9ZVt2QSVAco0pl0LLsT4Paugq8.png",
   },
 };
 
@@ -53,3 +62,4 @@ export default function RootLayout({
     </html>
   );
 }
+

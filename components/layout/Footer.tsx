@@ -2,7 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { Phone, Mail, MapPin, ArrowUp } from "lucide-react";
+import { LevinoLogo } from "../ui/LevinoLogo";
+import { CtaButton } from "../ui/CtaButton";
 import { LEVINO_CONTACT } from "@/data/levinoData";
 
 export const Footer: React.FC = () => {
@@ -13,218 +14,123 @@ export const Footer: React.FC = () => {
     });
   };
 
+  const navLinks = [
+    { label: "Home", href: "#hero" },
+    { label: "The Levino Experience", href: "#services" },
+    { label: "Amenities", href: "#projects" },
+    { label: "Why Levino", href: "#features" },
+    { label: "Founder's Vision", href: "#vision" },
+    { label: "Guest Reviews", href: "#testimonials" },
+    { label: "Explore Daman", href: "#blogs" },
+    { label: "FAQ", href: "#faq" },
+  ];
+
   return (
-    <footer className="border-t border-[#352318] bg-[#281C13] px-6 pt-16 pb-10 text-[#FBFBF7] sm:px-10 lg:px-20">
-      <div className="mx-auto max-w-7xl">
+    <footer className="bg-[#281C13] text-white pt-20 pb-12 px-6 md:px-10 border-t border-white/10">
+      <div className="max-w-[1280px] mx-auto">
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-white/10">
+          {/* Brand Column */}
+          <div className="lg:col-span-5 space-y-6">
+            <LevinoLogo size="large" />
 
-        {/* Main Footer */}
-        <div className="grid grid-cols-1 gap-12 border-b border-white/10 pb-14 md:grid-cols-2 lg:grid-cols-12">
-
-          {/* Brand */}
-          <div className="lg:col-span-5">
-            <Link href="/" className="inline-block">
-              <div
-                className="text-[42px] font-normal leading-none text-[#9B1C24]"
-                style={{ fontFamily: "cursive" }}
-              >
-                Levino
-              </div>
-
-              <div
-                className="mt-2 text-[18px] text-[#DDB892]"
-                style={{ fontFamily: "cursive" }}
-              >
-                …a home away from home
-              </div>
-            </Link>
-
-            <p className="mt-6 max-w-md text-sm font-light leading-7 text-[#EDECE4]/75">
-              Levino Palms and Levino Meadows — two distinct destinations in
-              Daman, united by a promise of refined hospitality, private
-              retreats, and curated luxury amidst open green spaces.
+            <p className="text-sm sm:text-base text-white/70 font-sans leading-relaxed max-w-md">
+              Levino Palms and Levino Meadows — two distinct destinations in Daman, united by a promise of refined hospitality, private retreats, and curated luxury amidst open green spaces.
             </p>
 
-            <div className="mt-5 flex items-center gap-2 text-xs text-[#DDB892]">
-              <span className="h-2 w-2 rounded-full bg-[#27A36B]" />
-              <span>5 Minutes from Devka Beach • Daman, India</span>
+            <div className="pt-2">
+              <CtaButton
+                href="tel:+919913713747"
+                variant="terracotta"
+              >
+                Get in touch
+              </CtaButton>
             </div>
           </div>
 
-          {/* Navigation */}
-          <div className="lg:col-span-3">
-            <h4
-              className="mb-5 text-[18px] font-normal text-[#DDB892]"
-              style={{ fontFamily: "cursive" }}
-            >
+          {/* Navigation Column */}
+          <div className="lg:col-span-3 space-y-4">
+            <h4 className="font-serif text-lg text-[#DDB892] tracking-wide">
               Navigation
             </h4>
-
-            <ul className="space-y-3 text-sm font-light text-[#EDECE4]/75">
-              <li>
-                <a href="#" className="transition-colors hover:text-white">
-                  Home
-                </a>
-              </li>
-
-              <li>
-                <a
-                  href="#palms"
-                  className="transition-colors hover:text-white"
-                >
-                  Levino Palms
-                </a>
-              </li>
-
-              <li>
-                <a
-                  href="#meadows"
-                  className="transition-colors hover:text-white"
-                >
-                  Levino Meadows
-                </a>
-              </li>
-
-              <li>
-                <a
-                  href="#amenities"
-                  className="transition-colors hover:text-white"
-                >
-                  Amenities
-                </a>
-              </li>
-
-              <li>
-                <a
-                  href="#weddings"
-                  className="transition-colors hover:text-white"
-                >
-                  Weddings & Events
-                </a>
-              </li>
-
-              <li>
-                <a
-                  href="#explore-daman"
-                  className="transition-colors hover:text-white"
-                >
-                  Explore Daman
-                </a>
-              </li>
-
-              <li>
-                <a
-                  href="#faq"
-                  className="transition-colors hover:text-white"
-                >
-                  FAQ & Policies
-                </a>
-              </li>
+            <ul className="space-y-2.5 text-sm text-white/70 font-sans">
+              {navLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    className="hover:text-white transition-colors duration-200"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact */}
-          <div className="lg:col-span-4">
-            <h4
-              className="mb-5 text-[18px] font-normal text-[#DDB892]"
-              style={{ fontFamily: "cursive" }}
-            >
-              Get in Touch
+          {/* Contact Column */}
+          <div className="lg:col-span-4 space-y-4">
+            <h4 className="font-serif text-lg text-[#DDB892] tracking-wide">
+              Contact Us
             </h4>
 
-            <div className="space-y-4 text-sm font-light text-[#EDECE4]/75">
-
-              {/* Address */}
-              <div className="flex items-start gap-3">
-                <MapPin className="mt-1 h-4 w-4 shrink-0 text-[#DDB892]" />
-
-                <span>{LEVINO_CONTACT.address}</span>
-              </div>
-
-              {/* Email */}
-              <div className="flex items-center gap-3">
-                <Mail className="h-4 w-4 shrink-0 text-[#DDB892]" />
-
-                <a
-                  href={`mailto:${LEVINO_CONTACT.email}`}
-                  className="transition-colors hover:text-white"
-                >
-                  {LEVINO_CONTACT.email}
+            <div className="space-y-3.5 text-sm text-white/70 font-sans">
+              <div>
+                <span className="text-xs uppercase tracking-wider text-white/40 block">Phone</span>
+                <a href="tel:+919913713747" className="hover:text-white transition-colors font-medium">
+                  +91 99137 13747 / +91 97241 13747
                 </a>
               </div>
 
-              {/* Reception */}
-              <div className="flex items-center gap-3">
-                <Phone className="h-4 w-4 shrink-0 text-[#DDB892]" />
-
-                <a
-                  href={`tel:${LEVINO_CONTACT.primaryPhoneClean}`}
-                  className="font-medium text-white transition-colors hover:text-[#DDB892]"
-                >
-                  {LEVINO_CONTACT.primaryPhone}
+              <div>
+                <span className="text-xs uppercase tracking-wider text-white/40 block">Email</span>
+                <a href="mailto:levinodaman@gmail.com" className="hover:text-white transition-colors">
+                  levinodaman@gmail.com
                 </a>
-
-                <span className="text-xs text-[#DDB892]">
-                  (Reception)
-                </span>
               </div>
 
-              {/* Events */}
-              <div className="flex items-center gap-3 pl-7">
-                <a
-                  href="tel:+919913713747"
-                  className="transition-colors hover:text-white"
-                >
-                  +91 99137 13747
-                </a>
-
-                <span className="text-xs text-[#DDB892]">
-                  (Events)
-                </span>
+              <div>
+                <span className="text-xs uppercase tracking-wider text-white/40 block">Location</span>
+                <span>Devka Beach Road, Daman, India</span>
               </div>
 
-              {/* Support */}
-              <div className="flex items-center gap-3 pl-7">
+              <div className="pt-2">
                 <a
-                  href="tel:+918291998806"
-                  className="transition-colors hover:text-white"
+                  href="https://www.instagram.com/levinodaman/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-xs text-white transition-colors border border-white/10"
                 >
-                  +91 82919 98806
+                  <span>Follow @levinodaman on Instagram</span>
+                  <span>↗</span>
                 </a>
-
-                <span className="text-xs text-[#DDB892]">
-                  (Support)
-                </span>
               </div>
-
             </div>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="flex flex-col items-center justify-between gap-4 pt-7 text-xs text-[#EDECE4]/60 sm:flex-row">
-
-          <p>© 2025 Levino. All rights reserved.</p>
+        {/* Bottom Legal & Copyright */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50 font-sans">
+          <p>© {new Date().getFullYear()} Levino. All rights reserved.</p>
 
           <div className="flex items-center gap-6">
-            <span className="cursor-pointer hover:text-white">
-              Terms & Conditions
+            <span className="hover:text-white cursor-pointer transition-colors">
+              Terms &amp; Conditions
             </span>
-
-            <span className="cursor-pointer hover:text-white">
+            <span className="hover:text-white cursor-pointer transition-colors">
               Privacy Policy
             </span>
-
             <button
               onClick={scrollToTop}
-              className="inline-flex cursor-pointer items-center gap-1.5 text-[#DDB892] transition-colors hover:text-white"
+              className="text-[#DDB892] hover:text-white cursor-pointer transition-colors flex items-center gap-1"
             >
               <span>Back to Top</span>
-              <ArrowUp className="h-3.5 w-3.5" />
+              <span>↑</span>
             </button>
           </div>
-
         </div>
       </div>
     </footer>
   );
 };
+
+export default Footer;

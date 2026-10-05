@@ -2,151 +2,91 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import { SectionBadge } from "../ui/SectionBadge";
 
 const amenities = [
   {
     title: "Poolside Relaxation",
     description:
       "A refreshing swimming pool surrounded by greenery — perfect for relaxing afternoons and family fun.",
-    image: "/poolside-relaxation.jpg",
+    image: "https://framerusercontent.com/images/xYIvc4idBNTWCTMCmU4nep7fKg.jpg",
   },
   {
     title: "Multi-Cuisine Restaurant",
     description:
       "Enjoy delicious vegetarian and non-vegetarian meals freshly prepared by our chefs.",
-    image: "/multicuisine-restaurant.avif",
+    image: "https://framerusercontent.com/images/9EU334TrB3M9FzWbaLc5xw9HQU.jpg",
   },
   {
     title: "Conference & Event Spaces",
     description:
       "Modern facilities for corporate meetings, celebrations, and private events.",
-    image: "/conference-events.webp",
+    image: "https://framerusercontent.com/images/lwHQuNr8ZYzamFCv3raR3sD6ocY.jpg",
   },
   {
     title: "Lush Green Lawns",
     description:
       "Open green spaces perfect for weddings, celebrations, and outdoor gatherings.",
-    image: "/lush green lawns.avif",
+    image: "https://framerusercontent.com/images/t7t26YAdkSCutrDsmxNynR6U.jpeg",
   },
 ];
 
 export function AmenitiesSection() {
   return (
-    <section
-      id="amenities"
-      className="bg-[#F7F5EF] px-6 py-28 sm:px-10 lg:px-16 lg:py-36"
-    >
-      <div className="mx-auto max-w-6xl">
-
-        {/* Elegant Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="mb-20"
-        >
-          <p className="mb-6 text-[10px] font-medium uppercase tracking-[0.45em] text-[#9A7955]">
-            The Art of Staying
-          </p>
-
-          <h2 className="max-w-4xl font-serif-luxury text-[3.2rem] font-normal leading-[1.02] tracking-[-0.035em] text-[#29241F] sm:text-6xl lg:text-[5.5rem]">
-            Thoughtfully designed
-            <br />
-            <span className="italic text-[#74675F]">
-              for every moment.
+    <section id="projects" className="py-20 md:py-28 px-6 md:px-10 bg-[#FBFBF7]">
+      <div className="max-w-[1280px] mx-auto">
+        {/* Section Heading */}
+        <div className="text-center mb-16 md:mb-20">
+          <SectionBadge>Amenities</SectionBadge>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#281C13] mt-2">
+            Thoughtfully designed{" "}
+            <span className="font-script text-4xl sm:text-5xl md:text-6xl text-[#9C6644] ml-1">
+              Amenities.
             </span>
           </h2>
-
-          <div className="mt-8 h-px w-20 bg-[#B9A58D]" />
-
-          <p className="mt-7 max-w-xl text-[14px] leading-7 tracking-wide text-[#746B64]">
-            From peaceful mornings by the pool to unforgettable celebrations,
-            every detail at Levino is designed to make your stay feel
-            effortless.
+          <p className="text-sm md:text-base text-[#6A472F] max-w-xl mx-auto mt-4 font-sans">
+            From peaceful mornings by the pool to unforgettable celebrations, every detail is designed for comfort.
           </p>
-        </motion.div>
-
-        {/* Amenities */}
-        <div className="grid gap-x-10 gap-y-20 md:grid-cols-2">
-          {amenities.map((amenity, index) => (
-            <motion.article
-              key={amenity.title}
-              initial={{ opacity: 0, y: 45 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{
-                duration: 0.9,
-                delay: index * 0.12,
-              }}
-              className="group"
-            >
-              {/* Image */}
-              <div className="relative overflow-hidden bg-[#DED8CF]">
-                <img
-                  src={amenity.image}
-                  alt={amenity.title}
-                  className="h-[370px] w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.04] sm:h-[450px]"
-                />
-
-                {/* Soft image overlay */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-60 transition-opacity duration-700 group-hover:opacity-30" />
-
-                {/* Number */}
-                <div className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full border border-white/50 bg-white/80 text-[10px] tracking-[0.15em] text-[#3A3028] backdrop-blur-md">
-                  0{index + 1}
-                </div>
-
-                {/* Hover circle */}
-                <div className="absolute bottom-5 right-5 flex h-12 w-12 translate-y-3 items-center justify-center rounded-full bg-white/90 opacity-0 shadow-lg backdrop-blur-md transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                  <ArrowUpRight className="h-4 w-4 text-[#40362F]" />
-                </div>
-              </div>
-
-              {/* Text */}
-              <div className="relative border-b border-[#D5CDC3] pb-8 pt-7">
-                <div className="flex items-start justify-between gap-8">
-
-                  <div>
-                    <p className="mb-3 font-serif-luxury text-[13px] italic tracking-[0.08em] text-[#9A7955]">
-                      Levino
-                    </p>
-
-                    <h3 className="font-serif-luxury text-[2rem] font-normal leading-[1.1] tracking-[-0.02em] text-[#29241F] sm:text-[2.4rem]">
-                      {amenity.title}
-                    </h3>
-
-                    <p className="mt-4 max-w-md text-[13px] leading-7 tracking-wide text-[#746B64]">
-                      {amenity.description}
-                    </p>
-                  </div>
-
-                  <span className="mt-1 text-[11px] tracking-[0.2em] text-[#9A7955]">
-                    0{index + 1}
-                  </span>
-
-                </div>
-              </div>
-            </motion.article>
-          ))}
         </div>
 
-        {/* Closing Statement */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2 }}
-          className="mt-24 border-t border-[#D5CDC3] pt-10"
-        >
-          <p className="font-serif-luxury text-3xl leading-tight tracking-[-0.02em] text-[#3A3028] sm:text-4xl">
-            A stay designed around
-            <span className="italic text-[#8A7867]"> you.</span>
-          </p>
-        </motion.div>
+        {/* 2x2 Grid of Amenity Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+          {amenities.map((item, idx) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.7, delay: idx * 0.1 }}
+              className="bg-white p-6 sm:p-8 rounded-[30px] border border-[#EDECE4] shadow-xs flex flex-col justify-between group hover:shadow-md transition-shadow"
+            >
+              {/* Image Container with 24px inner radius */}
+              <div className="relative w-full h-[280px] sm:h-[340px] rounded-[24px] overflow-hidden mb-6">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                />
+              </div>
 
+              {/* Title & Description */}
+              <div>
+                <h3 className="font-serif text-2xl sm:text-3xl text-[#281C13] mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-sm sm:text-base text-[#6A472F] leading-relaxed font-sans">
+                  {item.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
+
+export default AmenitiesSection;

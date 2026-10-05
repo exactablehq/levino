@@ -2,107 +2,124 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Star } from "lucide-react";
-import { PROPERTIES } from "@/data/levinoData";
+import Image from "next/image";
+import { CtaButton } from "../ui/CtaButton";
+import { SectionBadge } from "../ui/SectionBadge";
 
 interface DestinationsSectionProps {
-  onOpenBooking: (destination?: string) => void;
+  onOpenBooking?: (destination?: string) => void;
 }
 
 export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
   onOpenBooking,
 }) => {
+  const destinations = [
+    {
+      id: "meadows",
+      name: "Levino Meadows",
+      subtitle: "Elevated Indulgence",
+      description:
+        "A sanctuary of grandeur and refinement. Designed for lavish stays, destination weddings, and distinguished celebrations.",
+      image: "https://framerusercontent.com/images/92LbUTqFBmt5LRD9Cdel5mRhVw.jpeg",
+      rating: "⭐️ 4.6/5 (493)",
+      bgColor: "bg-[#E6CCB2]",
+      buttonText: "Explore Meadows",
+      videoUrl: "https://youtu.be/R3QNfc2khbE",
+    },
+    {
+      id: "palms",
+      name: "Levino Palms",
+      subtitle: "Understated Luxury",
+      description:
+        "A homely retreat where open green spaces blend with comfort. Perfectly suited for relaxing family getaways and intimate gatherings.",
+      image: "https://framerusercontent.com/images/35NPGozrnsIxP4UuRCpZjn5sg.jpg",
+      rating: "⭐️ 4.5/5 (578)",
+      bgColor: "bg-white",
+      buttonText: "Explore Palms",
+      videoUrl: "https://youtu.be/CmA0vMOKOVw",
+    },
+  ];
+
   return (
-    <section className="bg-[#F7F5EF] px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
-
-      {/* Heading */}
-      <div className="mx-auto mb-16 max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          {/* Small label */}
-          <p className="mb-5 text-[11px] uppercase tracking-[0.35em] text-[#8A7867]">
-            Our Destinations
-          </p>
-
-          {/* BIG heading */}
-          <h2 className="max-w-4xl font-serif-luxury text-5xl font-normal leading-[1.05] tracking-[-0.02em] text-[#2F2A26] sm:text-6xl lg:text-7xl">
-            The Levino Experience
+    <section id="services" className="py-20 md:py-28 px-6 md:px-10 bg-[#FBFBF7]">
+      <div className="max-w-[1280px] mx-auto">
+        {/* Section Heading */}
+        <div className="text-center mb-16 md:mb-20">
+          <SectionBadge>Our Destinations</SectionBadge>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#281C13] mt-2">
+            The Levino{" "}
+            <span className="font-script text-4xl sm:text-5xl md:text-6xl text-[#9C6644] ml-1">
+              Experience
+            </span>
           </h2>
-
-          {/* SMALL description */}
-          <p className="mt-6 max-w-2xl text-sm leading-6 tracking-wide text-[#746B64] sm:text-base">
-            Two destinations, distinct in character, united by timeless
-            hospitality and refined luxury.
+          <p className="text-sm md:text-base text-[#6A472F] max-w-xl mx-auto mt-4 font-sans">
+            Two distinct retreats crafted with timeless elegance, nestled near Devka Beach, Daman.
           </p>
-        </motion.div>
-      </div>
+        </div>
 
-      {/* Destination Cards */}
-      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-2">
-        {PROPERTIES.map((property, index) => (
-          <motion.article
-            key={property.id}
-            initial={{ opacity: 0, y: 35 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{
-              duration: 0.8,
-              delay: index * 0.12,
-            }}
-            className="group"
-          >
-            {/* Image */}
-            <div className="relative overflow-hidden">
-              <img
-                src={property.image}
-                alt={property.name}
-                className="h-[430px] w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.025] sm:h-[520px]"
-              />
+        {/* 2-Column Destination Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
+          {destinations.map((item, idx) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.8, delay: idx * 0.15 }}
+              className={`p-6 sm:p-8 rounded-[30px] shadow-sm border border-[#EDECE4] flex flex-col justify-between ${item.bgColor}`}
+            >
+              <div>
+                {/* Image Container with 24px inner radius and Rating Badge */}
+                <div className="relative w-full h-[320px] sm:h-[400px] rounded-[24px] overflow-hidden mb-8 shadow-xs">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-cover transition-transform duration-700 hover:scale-105"
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                  />
+                  {/* Rating Badge */}
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-semibold text-[#281C13] shadow-xs">
+                    {item.rating}
+                  </div>
+                </div>
 
-              {/* Rating */}
-              <div className="absolute left-5 top-5 flex items-center gap-2 bg-white/90 px-4 py-2 text-xs tracking-wide text-[#2F2A26] backdrop-blur-sm">
-                <Star className="h-3.5 w-3.5 fill-current" />
-                <span>
-                  {property.rating} ({property.reviewCount})
-                </span>
+                {/* Subtitle & Title */}
+                <p className="font-serif italic text-base sm:text-lg text-[#7F5539] mb-1">
+                  {item.subtitle}
+                </p>
+                <h3 className="font-serif text-3xl sm:text-4xl text-[#281C13] mb-4">
+                  {item.name}
+                </h3>
+
+                {/* Description */}
+                <p className="text-sm sm:text-base text-[#6A472F] leading-relaxed mb-8 font-sans">
+                  {item.description}
+                </p>
               </div>
-            </div>
 
-            {/* Content */}
-            <div className="pt-8">
+              {/* Card Actions */}
+              <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-[#281C13]/10">
+                <CtaButton
+                  href={item.videoUrl}
+                  external
+                  variant="dark"
+                >
+                  {item.buttonText}
+                </CtaButton>
 
-              {/* Elegant subtitle */}
-              <p className="font-serif-luxury text-[17px] italic tracking-wide text-[#8A7867]">
-                {property.badge}
-              </p>
-
-              {/* Property name */}
-              <h3 className="mt-2 font-serif-luxury text-4xl font-normal leading-tight tracking-[-0.02em] text-[#2F2A26] sm:text-5xl">
-                {property.name}
-              </h3>
-
-              {/* Description */}
-              <p className="mt-5 max-w-lg text-[14px] leading-7 text-[#746B64] sm:text-[15px]">
-                {property.description}
-              </p>
-
-              {/* Explore */}
-              <button
-                onClick={() => onOpenBooking(property.name)}
-                className="group/button mt-7 inline-flex items-center gap-3 border-b border-[#2F2A26]/70 pb-2 text-[13px] tracking-wide text-[#2F2A26] transition-all duration-300 hover:border-[#8A7867] hover:text-[#8A7867]"
-              >
-                Explore{" "}
-                {property.name === "Levino Meadows" ? "Meadows" : "Palms"}
-
-                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover/button:-translate-y-1 group-hover/button:translate-x-1" />
-              </button>
-            </div>
-          </motion.article>
-        ))}
+                {onOpenBooking && (
+                  <button
+                    onClick={() => onOpenBooking(item.name)}
+                    className="px-5 py-3 rounded-full text-xs uppercase tracking-wider font-semibold text-[#281C13] bg-black/5 hover:bg-black/10 transition-colors cursor-pointer"
+                  >
+                    Reserve Now
+                  </button>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

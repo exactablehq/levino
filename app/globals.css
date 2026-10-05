@@ -1,130 +1,104 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #F7F5EF;
-  --foreground: #24251F;
+  --background: #FBFBF7;
+  --foreground: #281C13;
 
-  /* Luxury palette */
-  --levino-forest: #26352C;
-  --levino-forest-dark: #1B2921;
-  --levino-forest-light: #35483C;
-
-  --levino-ivory: #F7F5EF;
-  --levino-white: #FFFFFF;
-  --levino-surface: #EFEEE7;
-
-  --levino-border: #DDDCD3;
-
-  --levino-champagne: #B89A6A;
-  --levino-champagne-light: #D8C5A1;
-
-  --levino-stone: #6D6B61;
-  --levino-charcoal: #24251F;
+  /* Exact Levino.in Framer Color Tokens */
+  --levino-dark: #281C13;
+  --levino-dark-2: #352318;
+  --levino-terracotta: #9C6644;
+  --levino-cream: #FBFBF7;
+  --levino-sand: #E6CCB2;
+  --levino-tan-badge: #DDB892;
+  --levino-border-subtle: #EDECE4;
+  --levino-brown-text: #6A472F;
+  --levino-brown-muted: #7F5539;
+  --levino-brown-light: #B88461;
+  --levino-logo-red: #E30016;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-forest: var(--levino-forest);
-  --color-forest-dark: var(--levino-forest-dark);
-  --color-forest-light: var(--levino-forest-light);
+  --color-levino-dark: var(--levino-dark);
+  --color-levino-dark-2: var(--levino-dark-2);
+  --color-levino-terracotta: var(--levino-terracotta);
+  --color-levino-cream: var(--levino-cream);
+  --color-levino-sand: var(--levino-sand);
+  --color-levino-tan-badge: var(--levino-tan-badge);
+  --color-levino-border: var(--levino-border-subtle);
+  --color-levino-brown: var(--levino-brown-text);
+  --color-levino-muted: var(--levino-brown-muted);
+  --color-levino-red: var(--levino-logo-red);
 
-  --color-ivory: var(--levino-ivory);
-  --color-white: var(--levino-white);
-  --color-surface: var(--levino-surface);
-
-  --color-border-subtle: var(--levino-border);
-
-  --color-champagne: var(--levino-champagne);
-  --color-champagne-light: var(--levino-champagne-light);
-
-  --color-stone: var(--levino-stone);
-  --color-charcoal: var(--levino-charcoal);
-
-  --font-sans: var(--font-inter), system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-
-  --font-serif: var(--font-playfair), Georgia, Cambria,
-    "Times New Roman", Times, serif;
-
+  --font-sans: 'Satoshi', var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, serif;
   --font-script: var(--font-great-vibes), cursive;
 }
 
 html {
   scroll-behavior: smooth;
   color-scheme: light;
+  background-color: #FBFBF7;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
+  background-color: #FBFBF7;
+  color: #281C13;
+  font-family: 'Satoshi', var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Luxury typography */
-
-.font-serif-luxury {
+/* Typography Helpers */
+.font-serif {
   font-family: var(--font-playfair), Georgia, serif;
 }
 
-.font-script-accent {
+.font-script {
   font-family: var(--font-great-vibes), cursive;
 }
 
-/* Smooth image and element transitions */
-
-img {
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+.font-satoshi {
+  font-family: 'Satoshi', var(--font-inter), sans-serif;
 }
 
-/* Premium scrollbar */
+/* Exact Framer Card Radii */
+.levino-card {
+  border-radius: 30px;
+}
 
+.levino-card-inner {
+  border-radius: 24px;
+}
+
+.levino-pill {
+  border-radius: 9999px;
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--levino-ivory);
+  background: #FBFBF7;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--levino-champagne);
-  border-radius: 999px;
+  background: #DDB892;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--levino-forest);
+  background: #9C6644;
 }
-
-/* Refined borders */
-
-.luxury-border {
-  border-color: var(--levino-border);
-}
-
-/* Premium cards */
-
-.luxury-card {
-  background: var(--levino-white);
-  border: 1px solid var(--levino-border);
-  box-shadow: 0 8px 30px rgba(36, 37, 31, 0.045);
-  transition:
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.4s ease;
-}
-
-.luxury-card:hover {
-  border-color: var(--levino-champagne-light);
-  box-shadow: 0 18px 45px rgba(36, 37, 31, 0.09);
-  transform: translateY(-3px);
-}
-
-/* Elegant selection */
 
 ::selection {
-  background: var(--levino-champagne-light);
-  color: var(--levino-forest-dark);
+  background: #E6CCB2;
+  color: #281C13;
 }
